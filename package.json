@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "npx hardhat compile",
+    "run-test": "npx nodemon hardhat scripts/deploy.js",
+    "run-testnet": "npx hardhat run scripts/deploy.js --network sepolia"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +17,8 @@
     "ethereum-waffle": "^4.0.10",
     "ethers": "^6.9.1",
     "hardhat": "^2.19.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   }
 }
