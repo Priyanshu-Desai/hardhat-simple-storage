@@ -7,9 +7,16 @@ async function main() {
   await simpleStorage.waitForDeployment();
   console.log("Deployed at:", simpleStorage.target);
   if (network.config.chainID !== 31337 && process.env.ETHERSCAN_API_KEY) {
-    await simpleStorage.deployTransaction.wait(5);
+    await simpleStorage.deploymentTransaction().wait(5);
     await verify(simpleStorage.target, []);
+    console.log("Contract verified on Etherscan");
   }
+  const currentValue = await simpleStorage.retrieve();
+  console.log(`Current value is: ${currentValue}`);
+  const transactionResponse = await simpleStorage.store(7);
+  await transactionResponse.wait(1);
+  const updatedValue = await simpleStorage.retrieve();
+  console.log(`Updated value is: ${updatedValue}`);
 }
 
 async function verify(contractAddress, args) {
@@ -20,7 +27,7 @@ async function verify(contractAddress, args) {
       constructorArguments: args,
     });
   } catch (e) {
-    if (e.message.toLowerCase().includes("already verified")) {
+    if (e.message.toLowerCase().includes("already been verified")) {
       console.log("Contract already verified");
     } else {
       console.error("Verification failed:", e);
