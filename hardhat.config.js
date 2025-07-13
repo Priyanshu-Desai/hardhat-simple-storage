@@ -20,5 +20,8 @@ module.exports = {
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
   },
+  gasReporter: {
+    enabled: true,
+  },
   solidity: "0.8.28",
 };
