@@ -6,7 +6,7 @@ async function main() {
   const simpleStorage = await SimpleStorageFactory.deploy();
   await simpleStorage.waitForDeployment();
   console.log("Deployed at:", simpleStorage.target);
-  if (network.config.chainID !== 31337 && process.env.ETHERSCAN_API_KEY) {
+  if (network.config.chainID === 11155111 && process.env.ETHERSCAN_API_KEY) {
     await simpleStorage.deploymentTransaction().wait(5);
     await verify(simpleStorage.target, []);
     console.log("Contract verified on Etherscan");
