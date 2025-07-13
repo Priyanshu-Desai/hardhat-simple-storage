@@ -1,7 +1,12 @@
 {
   "name": "hardhat-simple-storage",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+    "run-hardhat": "npx hardhat run scripts/deploy.js",
+    "run-sepolia": "npx run scripts/deploy.js --network sepolia",
+    "run-localhost": "npx hardhat run scripts/deploy.js --network localhost",
+    "compile": "npx hardhat compile"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
