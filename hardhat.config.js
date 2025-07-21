@@ -2,6 +2,7 @@ require("@nomicfoundation/hardhat-toolbox");
 require("@nomicfoundation/hardhat-verify");
 require("dotenv").config();
 require("./tasks/block-number");
+require("hardhat-gas-reporter");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -22,6 +23,8 @@ module.exports = {
   },
   gasReporter: {
     enabled: true,
+    currency: "GBP",
+    coinmarketcap: process.env.COINMARKETCAP_API_KEY,
   },
   solidity: "0.8.28",
 };
